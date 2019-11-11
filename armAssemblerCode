@@ -1,0 +1,48 @@
+		;int		add(int x, int y)
+		MOV		R0, #3
+		MOV		R1 , #4
+		ADD		R12, R0,R1
+		
+		
+		
+		
+		
+		;New		method
+		
+		
+foo		SUB		sp, sp, #24 ;allocate space for hello storing a char/word
+		MOV		R2 , #'H'
+		STR		R2 , [sp, #0]
+		MOV		R2 , #'e'
+		STR		R2 , [sp, #4]
+		MOV		R2 , #'l'
+		STR		R2 , [sp, #8]
+		STR		R2 , [sp, #12]
+		MOV		R2 , #'o'
+		STR		R2 , [sp, #16]
+		MOV		R2 , #0
+		STR		R2 , [sp, #20]
+		BL		countChar
+		END
+		
+		
+countChar	MOV		R2, #0 ;Resets register
+		MOV		R12, #0 ;Make sure return address is cleared
+		BL		loop
+		
+loop		LDR		R3 , [sp,R2]
+		
+		CMP		R3 , #0
+		BEQ		done
+		ADD		R12, R12, #1
+		ADD		R2, R2, #4
+		BL		loop
+		
+done		end
+		
+		
+		
+		
+		
+		
+		
