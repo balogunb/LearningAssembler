@@ -31,7 +31,6 @@ countChar	MOV		R2, #0 ;Resets register
 		BL		loop
 		
 loop		LDR		R3 , [sp,R2]
-		
 		CMP		R3 , #0
 		BEQ		done
 		ADD		R12, R12, #1
