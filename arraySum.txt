@@ -1,0 +1,39 @@
+		;main	creates an array and calls sum
+main		SUB		sp, sp, #36 ;allocate space for integer array of size 9
+		MOV		R0 , #45
+		STR		R0 , [sp, #0]
+		MOV		R0 , #32
+		STR		R0 , [sp, #4]
+		MOV		R0 , #0
+		STR		R0 , [sp, #8]
+		MOV		R0 , #1
+		STR		R0 , [sp, #12]
+		MOV		R0 , #03
+		STR		R0 , [sp, #16]
+		MOV		R0 , #11
+		STR		R0 , [sp, #20]
+		MOV		R0 , #7
+		STR		R0 , [sp, #24]
+		MOV		R0 , #11
+		STR		R0 , [sp, #28]
+		MOV		R0 , #1
+		STR		R0 , [sp, #32]
+		MOV		R1 , #9 ;Size of the integer array
+		BL		sum
+		
+		
+		;sum(	int* arr, int size ) - returns the sum of the ints in the array
+sum		MOV		R12 , #0 ;make sure return address is null
+		MOV		R2 , #0 ; used as counter for stack
+		BL		loop
+		
+		
+loop		CMP		R1, #0
+		BEQ		done
+		SUB		R1 , R1 , #1 ; decrement the size of the array
+		LDR		R3, [sp,R2]
+		ADD		R12 , R12 , R3
+		ADD		R2 , R2, #4
+		BL		loop
+		
+done		end
